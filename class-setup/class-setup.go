@@ -13,10 +13,9 @@ import (
 
 func main() {
 	msg("")
-	checkForExe("git", "--version")
-	checkForExe("go", "version")
+	checkForGit()
 
-	gopath := getGopath()
+	gopath, set := getGopath()
 	mkdir(path.Join(gopath, "bin"))
 	mkdir(path.Join(gopath, "pkg"))
 
@@ -28,16 +27,21 @@ func main() {
 		cloneRepo(gopath, r)
 	}
 
+	if !set {
+		msg("")
+		msg("  You should set your GOPATH environment variable to " + gopath)
+	}
+
 	msg("")
 }
 
-func checkForExe(e string, a ...string) {
-	if _, err := exec.Command(e, a...).Output(); err != nil {
-		exitWithErr(errors.New("  This program requires you to have " + e + " in your path but it could not be executed!"))
+func checkForGit() {
+	if _, err := exec.Command("git", "--version").Output(); err != nil {
+		exitWithErr(errors.New("  This program requires you to have git executable in your path but none was found."))
 	}
 }
 
-func getGopath() string {
+func getGopath() (string, bool) {
 	gopath := os.Getenv("GOPATH")
 	if gopath == "" {
 		u, err := user.Current()
@@ -45,24 +49,21 @@ func getGopath() string {
 			exitWithErr(err)
 		}
 
-		gopath := path.Join(u.HomeDir, "go")
+		gopath := path.Join(u.HomeDir, "gotest")
 		if askOrDie("Use " + gopath + " as your GOPATH") {
-			if err := os.Setenv("GOPATH", gopath); err != nil {
-				exitWithErr(err)
-			}
-			return gopath
+			return gopath, false
 		}
 
 		setGopathExit()
 	}
 
 	if askOrDie("GOPATH is set to " + gopath + ". Use that path for class exercises") {
-		return gopath
+		return gopath, true
 	}
 
 	setGopathExit()
 
-	return ""
+	return "", false
 }
 
 func askOrDie(q string) bool {
