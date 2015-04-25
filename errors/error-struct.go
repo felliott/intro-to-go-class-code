@@ -7,7 +7,7 @@ type HTTPError struct {
 
 // Implements the error interface with a method - we'll cover interfaces and
 // methods later
-func (he *HTTPError) String() {
+func (he *HTTPError) Error() {
 	return he.message
 }
 
@@ -20,3 +20,12 @@ func main() {
 
 	sendGoodResponse(r)
 }
+
+// START OMIT
+func httpResponse() (string, error) {
+	return "foo", nil
+}
+
+func sendHTTPError(e error) {}
+
+func sendGoodResponse(r string) {}
