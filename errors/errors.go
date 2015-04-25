@@ -19,7 +19,7 @@ func numCheck(n int) (int, error) {
 		// We still need to return *something* for the error - we cannot just
 		// "return n"
 		return n, nil // HL
-	} else {
-		return 0, errors.New("This is not 42!") // HL
 	}
+
+	return 0, errors.New("This is not 42!") // HL
 }

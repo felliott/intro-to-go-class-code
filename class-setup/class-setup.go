@@ -37,7 +37,7 @@ func main() {
 
 func checkForGit() {
 	if _, err := exec.Command("git", "--version").Output(); err != nil {
-		exitWithErr(errors.New("  This program requires you to have git executable in your path but none was found."))
+		exitWithErr(errors.New("  This program requires you to have git executable in your path but none was found"))
 	}
 }
 
@@ -126,9 +126,8 @@ func dirExists(d string) bool {
 	if err == nil {
 		if s.IsDir() {
 			return true
-		} else {
-			exitWithErr(errors.New(d + " already exists and is not a directory!"))
 		}
+		exitWithErr(errors.New(d + " already exists and is not a directory!"))
 	} else if err != nil && !os.IsNotExist(err) {
 		exitWithErr(err)
 	}
