@@ -8,7 +8,9 @@ func TestNew(t *testing.T) { // HL
 	if err == nil {
 		t.Fail("expected an error when the username is empty")
 	}
-	if user != User{} {
+
+	empty := User{}
+	if user != empty {
 		t.Fail("expected an empty user when the username is empty")
 	}
 }
