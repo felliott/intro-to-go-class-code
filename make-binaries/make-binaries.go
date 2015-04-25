@@ -50,7 +50,7 @@ func main() {
 		to = path.Join("/home/autarch/projects/intro-to-go-class/setup", to)
 
 		if o, err := exec.Command("mv", from, to).CombinedOutput(); err != nil {
-			log.Fatal("mv %s => %s failed: %s\n%s\n", from, to, err, string(o))
+			log.Fatalf("mv %s => %s failed: %s\n%s\n", from, to, err, string(o))
 		}
 	}
 }
