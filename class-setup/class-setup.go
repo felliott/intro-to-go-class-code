@@ -16,8 +16,6 @@ func main() {
 	checkForGit()
 
 	gopath, set := getGopath()
-	mkdir(path.Join(gopath, "bin"))
-	mkdir(path.Join(gopath, "pkg"))
 
 	repos := []string{
 		"https://github.com/autarch/intro-to-go-class-exercises.git",
