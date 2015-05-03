@@ -19,5 +19,5 @@ func main() {
 	davePtr := &dave // HL
 	fmt.Printf("davePtr is a %s to a %s\n",
 		reflect.TypeOf(davePtr).Kind(),
-		reflect.Indirect(reflect.ValueOf(davePtr)).Type().Name())
+		reflect.ValueOf(davePtr).Elem().Type().Name())
 }
