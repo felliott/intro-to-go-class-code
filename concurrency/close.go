@@ -10,12 +10,7 @@ func main() {
 	c := make(chan int)
 	go sendSomeInts(c)
 	for i := range c {
-		// i will be 0 when sendSomeInts() calls close(c)
-		if i > 0 { // HL
-			fmt.Println(i)
-		} else { // HL
-			break
-		}
+		fmt.Println(i)
 	}
 }
 
