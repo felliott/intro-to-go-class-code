@@ -8,7 +8,7 @@ func main() {
 		go printInt(i, c) // HL
 	}
 
-	for i := 1; i <= 4; i++ {
+	for i := 0; i < 4; i++ {
 		<-c
 	}
 }
