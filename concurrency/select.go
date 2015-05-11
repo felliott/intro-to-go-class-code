@@ -20,12 +20,12 @@ func main() {
 	}
 }
 
-func schedule(delay time.Duration) <-chan string {
+func schedule(delay int) <-chan string {
 	c := make(chan string)
 	go func() {
 		for i := 1; i <= 3; i++ {
-			time.Sleep(time.Millisecond * delay)
-			c <- fmt.Sprintf("message %d (after %d milliseconds)", i, int(delay)*i)
+			time.Sleep(time.Millisecond * time.Duration(delay))
+			c <- fmt.Sprintf("message %d (after %d milliseconds)", i, delay*i)
 		}
 	}()
 	return c
