@@ -14,7 +14,7 @@ func main() {
 
 	// But you can re-assign to a variable
 	a = append(a, "is", "also", "longer")
-	fmt.Println("a := append(a, ...)")
+	fmt.Println("a = append(a, ...)")
 	fmt.Printf("a = %v\n", a)
 	fmt.Printf("b = %v\n", b)
 }
