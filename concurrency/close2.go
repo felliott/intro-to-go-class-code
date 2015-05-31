@@ -5,15 +5,12 @@ import "fmt"
 func main() {
 	c1 := sendSomeInts()
 
-Outer:
 	for {
-		select {
-		case i, ok := <-c1:
-			if ok {
-				fmt.Printf("Channel says %d\n", i)
-			} else {
-				break Outer
-			}
+		i, ok := <-c1
+		if ok {
+			fmt.Printf("Channel says %d\n", i)
+		} else {
+			break
 		}
 	}
 }
