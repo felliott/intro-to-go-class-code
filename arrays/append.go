@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	a := []string{"an", "array", "of", "strings"}
+	a := []string{"a", "slice", "of", "strings"}
 	fmt.Printf("a = %v\n", a)
 
 	// Go does not modify a in place!
