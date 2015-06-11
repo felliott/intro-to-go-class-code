@@ -14,5 +14,5 @@ func main() {
 		age:  41,
 	}
 
-	fmt.Println(dave.name)
+	fmt.Println(davePtr.name)
 }
